@@ -34,8 +34,11 @@ void Node::draw() {
 	};
 
 	glPushMatrix();
-		glTranslatef(10,17, 0);
-		glVertexPointer(2, GL_FLOAT, 2*sizeof(float), v);
-		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	glPopMatrix();
+    
+    glTranslatef(50,200, 0);
+    glRotatef(20, 0, 0, 1);
+	glVertexPointer(2, GL_FLOAT, 2*sizeof(float), v);
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	
+    glPopMatrix();
 }
