@@ -6,12 +6,12 @@ class Node {
 private:
 	std::vector<Node*> *mChildren;
 
-	//Vector mPos;
+	Point mPos;
 
 public:
 	Node();
 
-	//void setPosition(Vector pos);
+	void setPosition(Point pos);
 
 	void addChild(Node *child);
 	void removeChild(Node *child);

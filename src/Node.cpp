@@ -8,14 +8,12 @@ Node::Node() {
 
 	//std::tr1::shared_ptr<Node> kaka = std::tr1::shared_ptr<Node>(new Node());
 
-	//mPos = Vector();
+	mPos = Point();
 }
 
-/*
-void Node::setPosition(Vector pos) {
+void Node::setPosition(Point pos) {
 	mPos = pos;
 }
-*/
 
 void Node::addChild(Node *child) {
 
@@ -35,7 +33,7 @@ void Node::draw() {
 
 	glPushMatrix();
     
-    glTranslatef(50,200, 0);
+    glTranslatef(mPos.x,mPos.y, 0);
     glRotatef(20, 0, 0, 1);
 	glVertexPointer(2, GL_FLOAT, 2*sizeof(float), v);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
