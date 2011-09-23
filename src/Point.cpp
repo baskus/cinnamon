@@ -1,5 +1,5 @@
 /*
- * simple_example.c
+ * Point.cpp
  *
  * Copyright (c) 2011 Sebastian €rleryd
  *

@@ -1,5 +1,5 @@
 /*
- * simple_example.c
+ * Node.h
  *
  * Copyright (c) 2011 Sebastian €rleryd
  *

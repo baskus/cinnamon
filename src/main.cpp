@@ -1,5 +1,5 @@
 /*
- * simple_example.c
+ * main.cpp
  *
  * Copyright (c) 2011 Rickard Edstršm
  * Copyright (c) 2011 Sebastian €rleryd
@@ -29,67 +29,35 @@
 
 #include "Render.h"
 
-const char* TAG = "main.c"; 
-
-GLint _screen_width;
-GLint _screen_height;
-
-// (_x, _y): the current position of the square 
-int _x = 100; 
-int _y = 100;
+const char* TAG = "main.cpp";
 
 Render *r;
 
-static boolean inside_the_square(int x, int y) {
-  return (x > _x && x < (_x + 90))
-      && (y > _y && y < (_y + 90));
-}
-
-static void move(int x, int y) {
-  _x = x-90/2;
-  _y = y-90/2;
-}
-
 boolean state = 0;
 static void on_touch(touch_type_t what, int x, int y) {
-  if (state) {
-    switch (what) {
-      case TOUCH_MOVE:
-        move(x, y);
-        break;
-      case TOUCH_UP:
-        state = 0;
-        break;
-      default:
-        {}
-    }
-  } else {
-    switch (what) { 
-      case TOUCH_DOWN:
-        if (inside_the_square(x, y)) {
-          state = 1;
-          move(x, y);
-        }
-        break;
-      default:
-        {}
-    }
-  }
-}
-
-static void draw_the_square() {
-  static const float v[] = {
-    0,  90,
-    0,  0,
-    90, 90,
-    90, 0
-  };    
-  
-  glPushMatrix();
-   glTranslatef(_x, _y, 0);
-   glVertexPointer(2, GL_FLOAT, 2*sizeof(float), v);
-   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-  glPopMatrix();  
+	if (state) {
+		switch (what) {
+		case TOUCH_MOVE:
+			move(x, y);
+			break;
+		case TOUCH_UP:
+			state = 0;
+			break;
+		default:
+			{}
+		}
+	} else {
+	switch (what) {
+	case TOUCH_DOWN:
+	if (inside_the_square(x, y)) {
+	  state = 1;
+	  move(x, y);
+	}
+	break;
+	default:
+	{}
+	}
+	}
 }
 
 void gdt_hook_initialize() {
@@ -106,21 +74,7 @@ void gdt_hook_exit() {
 
 void gdt_hook_visible(int width, int height) {
   gdt_log(LOG_DEBUG, TAG, "visible, screen w=%d h=%d", width, height);
-
-  _screen_width = width;
-  _screen_height = height;
   
-  /*
-  glViewport(0, 0, width, height);
-  
-  glMatrixMode(GL_PROJECTION);  
-  glOrthof(0, width, 0, height, 0, 1);
-  
-  glMatrixMode(GL_MODELVIEW); 
-  glEnableClientState(GL_VERTEX_ARRAY); 
-  glClearColor(0.4, 0.8, 0.4, 1);
-  */
-
   r->setup(width, height);
 }
 
@@ -129,18 +83,5 @@ void gdt_hook_hidden(boolean exiting) {
 }
 
 void gdt_hook_render() {
-	/*
-  glClear(GL_COLOR_BUFFER_BIT);
-  
-  glColor4f(0, 0, 1, 0.5);
-  
-  draw_the_square();
-  */
-
 	r->render();
 }
-
-
-
-
-

@@ -1,5 +1,5 @@
 /*
- * simple_example.c
+ * Render.h
  *
  * Copyright (c) 2011 Sebastian €rleryd
  *
