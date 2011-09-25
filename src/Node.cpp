@@ -57,8 +57,8 @@ void Node::draw() {
 
 	glPushMatrix();
     
-    glTranslatef(mPos.x,mPos.y, 0);
-    glRotatef(20, 0, 0, 1);
+    glTranslatef(mPos.x+20,mPos.y, 0);
+    glRotatef(-20, 0, 0, 1);
 	glVertexPointer(2, GL_FLOAT, 2*sizeof(float), v);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	

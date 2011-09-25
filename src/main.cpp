@@ -3,6 +3,7 @@
  *
  * Copyright (c) 2011 Rickard Edstršm
  * Copyright (c) 2011 Sebastian €rleryd
+ * Copyright (c) 2011 Carl Andersson
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +33,7 @@
 const char* TAG = "main.cpp";
 
 Render *r;
+void move(int,int);
 
 boolean state = 0;
 static void on_touch(touch_type_t what, int x, int y) {
@@ -49,10 +51,10 @@ static void on_touch(touch_type_t what, int x, int y) {
 	} else {
 	switch (what) {
 	case TOUCH_DOWN:
-	if (inside_the_square(x, y)) {
-	  state = 1;
-	  move(x, y);
-	}
+	//if (inside_the_square(x, y)) {
+	state = 1;
+	move(x, y);
+	//}
 	break;
 	default:
 	{}
@@ -84,4 +86,9 @@ void gdt_hook_hidden(boolean exiting) {
 
 void gdt_hook_render() {
 	r->render();
+}
+
+void move(int x,int y){
+
+	r->n.setPosition(Point(x,y));
 }

@@ -32,6 +32,5 @@ public:
 	
 	void render();
 
-private:
 	Node n;
 };
