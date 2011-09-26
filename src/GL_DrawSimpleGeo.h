@@ -1,7 +1,7 @@
 /*
- * Node.cpp
+ * GL_DrawSimpleGeo.h
  *
- * Copyright (c) 2011 Sebastian €rleryd
+ * Copyright (c) 2011 Carl Andersson
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,51 +22,19 @@
  * THE SOFTWARE.
  */
 
-#include <tr1/memory>
-
-#include "gdt_gles1.h"
-#include "GL_DrawSimpleGeo.h"
-
-#include "Node.h"
-
-Node::Node() {
-
-	//std::tr1::shared_ptr<Node> kaka = std::tr1::shared_ptr<Node>(new Node());
-
-	mPos = Point();
-}
-
-void Node::setPosition(Point pos) {
-	mPos = pos;
-}
-
-void Node::addChild(Node *child) {
-
-}
-
-void Node::removeChild(Node *child) {
-
-}
-
-void Node::draw() {
 
 
 
-	drawSquare(100,400,90,90,25);
+/*
+ * drawSqaure(int x1, int y1, int width, int height);
+ * Draw square with center at (x1,y1) with width and height
+ */
+void drawSquare(int,int,int,int);
 
-	/*static const float v[] = {
-		0,  90,
-		0,  0,
-		90, 90,
-		90, 0
-	};
+/*
+ * drawSqaure(int x1, int y1, int width, int height, float rotation)
+ * Draw square with center at (x1,y1) with width and height rotated rotation degrees
+ */
+void drawSquare(int,int,int,int,float);
 
-	glPushMatrix();
-    
-    glTranslatef(mPos.x+20,mPos.y, 0);
-    glRotatef(-20, 0, 0, 1);
-	glVertexPointer(2, GL_FLOAT, 2*sizeof(float), v);
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	
-    glPopMatrix();*/
-}
+
