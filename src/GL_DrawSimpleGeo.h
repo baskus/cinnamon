@@ -26,15 +26,28 @@
 
 
 /*
- * drawSqaure(int x1, int y1, int width, int height);
+ * drawSquare(const float x1, const float y1,const  float width, const float height)
  * Draw square with center at (x1,y1) with width and height
  */
-void drawSquare(int,int,int,int);
+void drawSquare(const float, const float,const float,const float);
 
 /*
- * drawSqaure(int x1, int y1, int width, int height, float rotation)
+ * drawSquare(const float x1, const float y1,const  float width, const float height,const float rotation)
  * Draw square with center at (x1,y1) with width and height rotated rotation degrees
  */
-void drawSquare(int,int,int,int,float);
+void drawSquare(const float, const float,const float,const float,const float);
+
+/*
+ * drawellipse(const float x1 ,const float y1,const float hRadius,const float vRadius)
+ * Draw ellipse with center at (x1,y1) with horsisontal radius hRadius and vertical radius vRadius
+ */
+void drawEllipse(const float, const float,const float,const float);
+
+/*
+ * drawEllipse(const float x1 ,const float y1,const float hRadius, const float vRadius,const float rotation)
+ * Draw ellipse with center at (x1,y1) with horsisontal radius hRadius and vertical radius vRadius
+ * rotated rotation degrees
+ */
+void drawEllipse(const float, const float,const float,const float,const float);
 
 

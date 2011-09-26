@@ -24,12 +24,18 @@
 
 #include "GL_DrawSimpleGeo.h"
 #include "gdt_gles1.h"
+#include <math.h>
 
-void drawSquare(int x1, int y1, int width, int height) {
-	const float v[] = { -(width >> 1), -(height >> 1),
-						-(width >> 1),  (height >> 1),
-						 (width >> 1), -(height >> 1),
-						 (width >> 1),  (height >> 1) };
+#define PI (3.1415926535)
+
+/*
+ * Draw square with center at (x1,y1) with width and height
+ */
+void drawSquare(const float x1, const float y1,const float width,const float height) {
+	const float v[] = { -(width /2), -(height /2),
+						-(width /2),  (height /2),
+						 (width /2), -(height /2),
+						 (width /2),  (height /2) };
 
 	glPushMatrix();
 		glTranslatef(x1, y1, 0);
@@ -38,11 +44,14 @@ void drawSquare(int x1, int y1, int width, int height) {
 	glPopMatrix();
 }
 
-void drawSquare(int x1, int y1, int width, int height,float rotation){
-	const float v[] = { -(width >> 1), -(height >> 1),
-							-(width >> 1),  (height >> 1),
-							 (width >> 1), -(height >> 1),
-							 (width >> 1),  (height >> 1) };
+/*
+ * Draw square with center at (x1,y1) with width and height rotated rotation degrees
+ */
+void drawSquare(const float x1, const float y1,const  float width, const float height,const float rotation){
+	const float v[] = { -(width /2), -(height /2),
+						-(width /2),  (height /2),
+						 (width /2), -(height /2),
+						 (width /2),  (height /2) };
 
 	glPushMatrix();
 		glTranslatef(x1, y1, 0);
@@ -52,3 +61,40 @@ void drawSquare(int x1, int y1, int width, int height,float rotation){
 	glPopMatrix();
 }
 
+/*
+ * Draw ellipse with center at (x1,y1) with horisontal radius hRadius and vertical radius vRadius
+ */
+void drawEllipse(const float x1 ,const float y1,const float hRadius,const float vRadius){
+	int numberOfvertex=40;
+	float vertex[numberOfvertex<<1];
+	for (int i=0;i<numberOfvertex<<1;i+=2){
+		vertex[i]=hRadius*cos(i*PI/(numberOfvertex));
+		vertex[i+1]=vRadius*sin(i*PI/(numberOfvertex));
+	}
+
+	glPushMatrix();
+		glTranslatef(x1, y1, 0);
+		glVertexPointer(2, GL_FLOAT, 2 * sizeof(float), vertex);
+		glDrawArrays(GL_TRIANGLE_FAN, 0, numberOfvertex);
+	glPopMatrix();
+}
+
+/*
+ * Draw ellipse with center at (x1,y1) with horisontal radius hRadius and vertical radius vRadius
+ * rotated rotation degrees
+ */
+void drawEllipse(const float x1 ,const float y1,const float hRadius, const float vRadius,const float rotation){
+	int numberOfvertex=40;
+	float vertex[numberOfvertex<<1];
+	for (int i=0;i<numberOfvertex<<1;i+=2){
+		vertex[i]=hRadius*cos(i*PI/(numberOfvertex));
+		vertex[i+1]=vRadius*sin(i*PI/(numberOfvertex));
+	}
+
+	glPushMatrix();
+		glTranslatef(x1, y1, 0);
+		glRotatef(rotation,0,0,1);
+		glVertexPointer(2, GL_FLOAT, 2 * sizeof(float), vertex);
+		glDrawArrays(GL_TRIANGLE_FAN, 0, numberOfvertex);
+	glPopMatrix();
+}

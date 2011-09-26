@@ -2,6 +2,7 @@
  * Node.cpp
  *
  * Copyright (c) 2011 Sebastian €rleryd
+ * Copyright (c) 2011 Carl Andersson
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -50,10 +51,10 @@ void Node::removeChild(Node *child) {
 
 void Node::draw() {
 
+	//drawSquare(100,400,90,90,25);
 
 
-	drawSquare(100,400,90,90,25);
-
+	drawEllipse(200,150,200,300);
 	/*static const float v[] = {
 		0,  90,
 		0,  0,
