@@ -36,6 +36,8 @@ public:
 	nnPoint operator-() const;
 	nnPoint operator+(const nnPoint &other) const;
 	nnPoint operator-(const nnPoint &other) const;
+	nnPoint operator+=(const nnPoint &other);
+	nnPoint operator-=(const nnPoint &other);
 };
 
 #endif //CINNAMON_POINT_H

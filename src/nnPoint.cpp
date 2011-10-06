@@ -39,3 +39,16 @@ nnPoint nnPoint::operator+(const nnPoint &other) const {
 nnPoint nnPoint::operator-(const nnPoint &other) const {
 	return nnPoint(x - other.x, y - other.y);
 }
+
+nnPoint nnPoint::operator+=(const nnPoint &other){
+	x+=other.x;
+	y+=other.y;
+	return *this;
+}
+
+nnPoint nnPoint::operator-=(const nnPoint &other){
+	x-=other.x;
+	y-=other.y;
+	return *this;
+}
+

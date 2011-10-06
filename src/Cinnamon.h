@@ -25,9 +25,6 @@
 #ifndef CINNAMON_H
 #define CINNAMON_H
 
-/** nnHookInitialize -- Called when the program starts.
- * Programs using Cinnamon have to implement this function.
- */
+/** nnHookInitialize -- Called when the program starts. * Programs using Cinnamon have to implement this function. */
 void nnHookInitialize();
-
 #endif //CINNAMON_H
