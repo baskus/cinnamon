@@ -1,9 +1,7 @@
 /*
- * main.cpp
+ * nnPoint.cpp
  *
- * Copyright (c) 2011 Rickard Edstršm
  * Copyright (c) 2011 Sebastian €rleryd
- * Copyright (c) 2011 Carl Andersson
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,71 +22,20 @@
  * THE SOFTWARE.
  */
 
-#include "gdt.h"
-#include "gdt_gles1.h"
-#include <unistd.h> 
+#include "nnPoint.h"
 
-#include "Render.h"
+nnPoint::nnPoint() : x(0), y(0) {}
 
-const char* TAG = "main.cpp";
+nnPoint::nnPoint(float x, float y) : x(x), y(y) {}
 
-Render *r;
-void move(int,int);
-
-boolean state = 0;
-static void on_touch(touch_type_t what, int x, int y) {
-	if (state) {
-		switch (what) {
-		case TOUCH_MOVE:
-			move(x, y);
-			break;
-		case TOUCH_UP:
-			state = 0;
-			break;
-		default:
-			{}
-		}
-	} else {
-	switch (what) {
-	case TOUCH_DOWN:
-	//if (inside_the_square(x, y)) {
-	state = 1;
-	move(x, y);
-	//}
-	break;
-	default:
-	{}
-	}
-	}
+nnPoint nnPoint::operator-() const {
+	return nnPoint(-x, -y);
 }
 
-void gdt_hook_initialize() {
-  gdt_log(LOG_DEBUG, TAG, "started");
-  
-  r = new Render();
-
-  gdt_set_callback_touch(&on_touch);
+nnPoint nnPoint::operator+(const nnPoint &other) const {
+	return nnPoint(x + other.x, y + other.y);
 }
 
-void gdt_hook_exit() {
-  gdt_log(LOG_DEBUG, TAG, "exiting");
-}
-
-void gdt_hook_visible(int width, int height) {
-  gdt_log(LOG_DEBUG, TAG, "visible, screen w=%d h=%d", width, height);
-  
-  r->setup(width, height);
-}
-
-void gdt_hook_hidden(boolean exiting) {
-
-}
-
-void gdt_hook_render() {
-	r->render();
-}
-
-void move(int x,int y){
-
-	r->n.setPosition(Point(x,y));
+nnPoint nnPoint::operator-(const nnPoint &other) const {
+	return nnPoint(x - other.x, y - other.y);
 }
